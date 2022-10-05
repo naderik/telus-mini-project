@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import os
 
 app = Flask(__name__)
@@ -8,6 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://flask-app:flaskapp@35.226.141.139:5432/contract-data"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # create the contact model
 
@@ -62,30 +64,30 @@ def create_contract():
     new_contract = Contract(vndr_nm=data['vndr_nm'], vndr_num=data['vndr_num'], agmnt_num=data['agmnt_num'], cntrct_stat_cd=data['cntrct_stat_cd'], cntrct_catgy_cd=data['cntrct_catgy_cd'], cntrct_eff_dt=data['cntrct_eff_dt'], cntrct_expir_dt=data['cntrct_expir_dt'])
     db.session.add(new_contract)
     db.session.commit()
-    return jsonify(new_contract.__dict__)
+    return jsonify(new_contract)
 
-# # update a contract
-# @app.route('/contracts/<id>', methods=['PUT'])
-# def update_contract(id):
-#     data = request.get_json()
-#     contract = Contract.query.get(id)
-#     contract.vndr_nm = data['vndr_nm']
-#     contract.vndr_num = data['vndr_num']
-#     contract.agmnt_num = data['agmnt_num']
-#     contract.cntrct_stat_cd = data['cntrct_stat_cd']
-#     contract.cntrct_catgy_cd = data['cntrct_catgy_cd']
-#     contract.cntrct_eff_dt = data['cntrct_eff_dt']
-#     contract.cntrct_expir_dt = data['cntrct_expir_dt']
-#     db.session.commit()
-#     return jsonify(contract.__dict__)
+# update a contract
+@app.route('/contracts/<id>', methods=['PUT'])
+def update_contract(id):
+    data = request.get_json()
+    contract = Contract.query.get(id)
+    contract.vndr_nm = data['vndr_nm']
+    contract.vndr_num = data['vndr_num']
+    contract.agmnt_num = data['agmnt_num']
+    contract.cntrct_stat_cd = data['cntrct_stat_cd']
+    contract.cntrct_catgy_cd = data['cntrct_catgy_cd']
+    contract.cntrct_eff_dt = data['cntrct_eff_dt']
+    contract.cntrct_expir_dt = data['cntrct_expir_dt']
+    db.session.commit()
+    return jsonify(contract.__dict__)
 
-# # delete a contract
-# @app.route('/contracts/<id>', methods=['DELETE'])
-# def delete_contract(id):
-#     contract = Contract.query.get(id)
-#     db.session.delete(contract)
-#     db.session.commit()
-#     return jsonify(contract.__dict__)
+# delete a contract
+@app.route('/contracts/<id>', methods=['DELETE'])
+def delete_contract(id):
+    contract = Contract.query.get(id)
+    db.session.delete(contract)
+    db.session.commit()
+    return jsonify(contract.__dict__)
 
 
 if __name__ == '__main__':
