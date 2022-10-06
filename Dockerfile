@@ -1,13 +1,26 @@
-FROM python:3.8.2-alpine3.11
+# using base image
+FROM python:3.8
 
-RUN apt update
+# setting working dir inside container
+WORKDIR /backend
 
-COPY  requirements.txt  .
+# adding run.py to workdir
+ADD run.py .
 
+# adding config.ini to workdir
+ADD config.ini .
+
+# adding requirements.txt to workdir
+ADD requirements.txt .
+
+# installing flask requirements
 RUN pip install -r requirements.txt
 
-COPY  .  .
+# adding in all contents from flask_app folder into a new flask_app folder
+ADD ./flask_app ./flask_app
 
-EXPOSE  8080
+# exposing port 8000 on container
+EXPOSE 8000
 
-CMD [ "flask" ,  "run", "--host=0.0.0.0", "--port=8080" ]
+# serving flask backend through uWSGI server
+CMD [ "python", "run.py" ]
