@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import BasicTable from './components/BasicTable';
 import './App.css';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
   return (
     <>
       <h1>Telus Contracts App</h1>
+      <BasicTable />
       {state?.contracts?.map(d => <li>{d}</li>)}
     </>
   );
