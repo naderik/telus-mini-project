@@ -7,8 +7,8 @@ function PieChart(props) {
         data,
     } = props;
     console.log(props)
-    const outerRadius = 1000;
-    const innerRadius = 500;
+    const outerRadius = 500;
+    const innerRadius = 250;
     const margin = {
         top: 50, right: 50, bottom: 50, left: 50,
     };
