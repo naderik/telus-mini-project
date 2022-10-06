@@ -2,7 +2,7 @@
 FROM node:18 as build-stage
 
 # setting working dir inside container
-WORKDIR /froneend
+WORKDIR /frontend
 
 # required to install packages
 COPY package*.json ./
@@ -23,7 +23,7 @@ COPY react_server.conf ./
 RUN npm run build
 
 # starting second, nginx build-stage
-FROM nginx:1.15
+FROM nginx:1.21.3-alpine
 
 # removing default nginx config file
 RUN rm /etc/nginx/conf.d/default.conf
