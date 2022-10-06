@@ -19,15 +19,16 @@ def data():
     Function used to get all contracts from Postgres database and return to fetch call in frontend.
     :return: Json format of either collected calculations or error message
     '''
-
+    skip = request.args.get('skip', 0, type=int)
+    take = request.args.get('take', 10, type=int)
     all_contracts = []
 
     try:
-        contracts = get_contracts()
+        contracts = get_contracts(skip, take)
         for key, value in contracts.items():
             all_contracts.append(value)
 
-        return jsonify({'contracts': all_contracts}), 200
+        return jsonify({'data': all_contracts}), 200
     except:
         return jsonify({'error': 'error fetching contracts'}), 500
 

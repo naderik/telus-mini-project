@@ -1,24 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import BasicTable from './components/BasicTable';
+import LazyTable from './components/LazyTable';
 import './App.css';
 
 function App() {
-  const [state, setState] = useState()
 
-  useEffect(() => {
-    fetch("http://localhost:8585/api/contracts", {
-      method: 'GET',
-      mode: 'cors'
-    }).then(response => {
-      if (response.status === 200) {
-        response.json().then(data => {
-          setState(data)
-        })
-      }
-    })
-  }, [])
-  console.log(state)
   //   if (response.status === 200) {
   //     (response.json()).then((data) => {
   //       setState({ contracts: data['contracts'] })
@@ -36,8 +23,7 @@ function App() {
   return (
     <>
       <h1>Telus Contracts App</h1>
-      <BasicTable />
-      {state?.contracts?.map(d => <li>{d}</li>)}
+      <LazyTable />
     </>
   );
 }

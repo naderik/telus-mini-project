@@ -96,7 +96,7 @@ def create_contracts_table():
 #         my_connection.close()
 #         engine.dispose()
 
-def get_contracts():
+def get_contracts(skip, take):
     '''
     Function used to fetch all contracts from PSQL DB.
     :return: hashmap of contracts
@@ -104,10 +104,12 @@ def get_contracts():
 
     URI = connection_uri()
     my_connection = None
+
+    # sql query to fetch all contracts but skip the first [skip] and take the next [take] contracts
+
+
     
-    GET_CONTRACTS_QUERY = """
-                                SELECT * FROM contracts
-                             """
+    GET_CONTRACTS_QUERY = " SELECT * FROM contracts ORDER BY id LIMIT {} OFFSET {} ".format(take, skip)
 
     try:
         engine = create_engine(URI, echo=False)
