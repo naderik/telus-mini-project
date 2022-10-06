@@ -1,5 +1,5 @@
 from gevent.pywsgi import WSGIServer
-from flask_app.app import app
+from backend.app import app
 
 # As flask is not a production suitable server, we use will
 # a WSGIServer instance to serve our flask application. 

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from db import get_contracts, create_contracts_table
+from backend.db import get_contracts, create_contracts_table
 
 app = Flask(__name__)
 
