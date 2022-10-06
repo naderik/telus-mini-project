@@ -67,34 +67,34 @@ def create_contracts_table():
         my_connection.close()
         engine.dispose()
 
-def insert_contract(vndr_nm, vndr_num, agmnt_num, cntrct_stat_cd, cntrct_catgy_cd, cntrct_eff_dt, cntrct_expir_dt):
-    '''
-    Function used to insert our contract into the DB.
-    :param vndr_nm: Vendor name
-    :param vndr_num: Vendor number
-    :param agmnt_num: Agreement number
-    :param cntrct_stat_cd: Contract status code
-    :param cntrct_catgy_cd: Contract category code
-    :param cntrct_eff_dt: Contract effective date
-    :param cntrct_expir_dt: Contract expiration date
-    :return: error or success strings for inserting into DB.
-    '''
-    URI = connection_uri()
-    my_connection = None
+# def insert_contract(vndr_nm, vndr_num, agmnt_num, cntrct_stat_cd, cntrct_catgy_cd, cntrct_eff_dt, cntrct_expir_dt):
+#     '''
+#     Function used to insert our contract into the DB.
+#     :param vndr_nm: Vendor name
+#     :param vndr_num: Vendor number
+#     :param agmnt_num: Agreement number
+#     :param cntrct_stat_cd: Contract status code
+#     :param cntrct_catgy_cd: Contract category code
+#     :param cntrct_eff_dt: Contract effective date
+#     :param cntrct_expir_dt: Contract expiration date
+#     :return: error or success strings for inserting into DB.
+#     '''
+#     URI = connection_uri()
+#     my_connection = None
 
-    try:
-        engine = create_engine(URI, echo=True)
-        my_connection = engine.connect()
+#     try:
+#         engine = create_engine(URI, echo=True)
+#         my_connection = engine.connect()
 
-        my_connection.execute('INSERT INTO contracts VALUES (%s, %s, %s, %s,  %s, %s, %s,)', (vndr_nm, vndr_num, agmnt_num, cntrct_stat_cd, cntrct_catgy_cd, cntrct_eff_dt, cntrct_expir_dt))
-        return "Insertion successful"
+#         my_connection.execute('INSERT INTO contracts VALUES (%s, %s, %s, %s,  %s, %s, %s, %s)', (vndr_nm, vndr_num, agmnt_num, cntrct_stat_cd, cntrct_catgy_cd, cntrct_eff_dt, cntrct_expir_dt, "DEFAULT"))
+#         return "Insertion successful"
 
-    except exc.SQLAlchemyError as err:
-        return 'Error occured inserting into table {}. Exception: {}'.format("contracts", err)
+#     except exc.SQLAlchemyError as err:
+#         return 'Error occured inserting into table {}. Exception: {}'.format("contracts", err)
 
-    finally:
-        my_connection.close()
-        engine.dispose()
+#     finally:
+#         my_connection.close()
+#         engine.dispose()
 
 def get_contracts():
     '''
@@ -119,7 +119,7 @@ def get_contracts():
 
         i = 1
         for row in contracts:
-            all_contracts[i] = (row['vndr_nm'], row['vndr_num'], row['agmnt_num'], row['cntrct_stat_cd'], row['cntrct_catgy_cd'], row['cntrct_eff_dt'], row['cntrct_expir_dt'])
+            all_contracts[i] = (row['id'], row['vndr_nm'], row['vndr_num'], row['agmnt_num'], row['cntrct_stat_cd'], row['cntrct_catgy_cd'], row['cntrct_eff_dt'], row['cntrct_expir_dt'])
             i += 1
 
         return all_contracts
@@ -155,4 +155,4 @@ def delete_contract(id):
         engine.dispose()
 
 if __name__=="__main__":
-    delete_contract(12345)
+    delete_contract(999999999)
