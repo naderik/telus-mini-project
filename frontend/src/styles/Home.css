@@ -1,0 +1,86 @@
+.home {
+    width: 100%;
+    align-items: center;
+    font-family: 'Titillium Web', sans-serif;
+    color: #C5DA8D;
+}
+
+.about {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 900;
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #135C5A;
+    color: #C5DA8D;
+}
+
+.about h2 {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: bold;
+    font-size: 80px;
+    color: #EBD86D;
+    height: 50px;
+}
+
+.about .prompt {
+    width: 40%;
+    font-size: 30px;
+}
+
+.prompt svg {
+    font-size: 60px;
+    margin: 5px;
+    color: #EBD86D;
+    cursor: pointer;
+}
+
+.skills {
+    font-size: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skills h1 {
+    color: #EBD86D;
+}
+
+.skills .list {
+    list-style: none;
+    width: 60%;
+}
+
+.list span {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .about h2 {
+        font-size: 40px;
+    }
+
+    .about .prompt {
+        margin-top: 10px;
+        font-size: 20px;
+        width: 80%;
+    }
+
+    .skills {
+        text-align: center;
+    }
+
+    .list {
+        padding: 0;
+    }
+
+    .skills h2 {
+        font-size: 30px;
+    }
+}

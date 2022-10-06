@@ -1,30 +1,26 @@
-
-import React, { useState, useEffect } from 'react';
-import BasicTable from './components/BasicTable';
-import LazyTable from './components/LazyTable';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import Home from './pages/Home';
+import Chart1 from './pages/Chart1';
+import Chart2 from './pages/Chart2';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 
 function App() {
-
-  //   if (response.status === 200) {
-  //     (response.json()).then((data) => {
-  //       setState({ contracts: data['contracts'] })
-  //     })
-  //   } else {
-  //     (response.json()).then((data) => {
-  //       setState({ answer: data['error'] })
-  //       return null
-  //     })
-  //   }
-  // }).catch((error) => {
-  //   console.log("Error in fetching contracts", error)
-  // })
-
   return (
-    <>
-      <h1>Telus Contracts App</h1>
-      <LazyTable />
-    </>
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/chart1" element={<Chart1 />} />
+          <Route path="/chart2" element={<Chart2 />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 
