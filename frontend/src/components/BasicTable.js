@@ -7,16 +7,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(id, vndr_nm, vndr_num, agmnt_num, cntrct_stat_cd, cntrct_catgy_cd, cntrct_eff_dt, cntrct_expir_dt) {
+  return {id,  vndr_nm, vndr_num, agmnt_num, cntrct_stat_cd, cntrct_catgy_cd, cntrct_eff_dt, cntrct_expir_dt };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData(23, 'TEST contract', '32156', '123456', 'Active', 'Category 1', '2021-01-01', '2021-12-31'),
 ];
 
 export default function BasicTable() {
@@ -25,26 +21,32 @@ export default function BasicTable() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Conntract ID</TableCell>
+            <TableCell align="right">Vendor Name</TableCell>
+            <TableCell align="right">Vendor Number</TableCell>
+            <TableCell align="right">Agreement Number</TableCell>
+            <TableCell align="right">Contract Status</TableCell>
+            <TableCell align="right">Contract Category</TableCell>
+            <TableCell align="right">Contract Effective Date</TableCell>
+            <TableCell align="right">Contract Expiration Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.id}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.vndr_nm}</TableCell>
+              <TableCell align="right">{row.vndr_num}</TableCell>
+              <TableCell align="right">{row.agmnt_num}</TableCell>
+              <TableCell align="right">{row.cntrct_stat_cd}</TableCell>
+              <TableCell align="right">{row.cntrct_catgy_cd}</TableCell>
+              <TableCell align="right">{row.cntrct_eff_dt}</TableCell>
+              <TableCell align="right">{row.cntrct_expir_dt}</TableCell>
             </TableRow>
           ))}
         </TableBody>
