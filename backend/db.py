@@ -49,7 +49,8 @@ def create_contracts_table():
                         cntrct_stat_cd VARCHAR(120) NOT NULL,
                         cntrct_catgy_cd VARCHAR(120) NOT NULL,
                         cntrct_eff_dt VARCHAR(120) NOT NULL,
-                        cntrct_expir_dt VARCHAR(120) NOT NULL
+                        cntrct_expir_dt VARCHAR(120) NOT NULL,
+                        id SERIAL PRIMARY KEY
                     )""".format(TABLE_NAME)
     
     try:
