@@ -5,6 +5,7 @@ import LazyTable from "../components/LazyTable";
 function Home() {
     return (
         <div className="home">
+            <h1>Data Table</h1>
             <LazyTable/>
         </div>
     );
