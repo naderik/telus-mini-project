@@ -12,7 +12,7 @@ import {
 const VIRTUAL_PAGE_SIZE = 100;
 const MAX_ROWS = 50000;
 const URL = 'http://localhost:8585/api/contracts';
-const getRowId = row => row.Id;
+const getRowId = row => row[0];
 const buildQueryString = (skip, take) => `${URL}?skip=${skip}&take=${take}`;
 
 const initialState = {
@@ -62,17 +62,24 @@ function reducer(state, { type, payload }) {
 export default function LazyTable() {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [columns] = useState([
-        { name: 'Id', title: 'Id', getCellValue: row => row.Id },
-        { name: 'ProductCategoryName', title: 'Category', getCellValue: row => row.ProductCategoryName },
-        { name: 'StoreName', title: 'Store', getCellValue: row => row.StoreName },
-        { name: 'ProductName', title: 'Product', getCellValue: row => row.ProductName },
-        { name: 'SalesAmount', title: 'Amount', getCellValue: row => row.SalesAmount },
+        { name: 'Id', title: 'Id', getCellValue: row => row[0] },
+        { name: 'Vendor Name', title: 'Vendor Name', getCellValue: row => row[1] },
+        { name: 'Vendor Number', title: 'Vendor#', getCellValue: row => row[2] },
+        { name: 'Agreement Number', title: 'Agreement#', getCellValue: row => row[3] },
+        { name: 'Contract Status', title: 'Status', getCellValue: row => row[4] },
+        { name: 'Contract Category', title: 'Contract Category', getCellValue: row => row[5] },
+        { name: 'Contract Effective Date', title: 'Effective Date', getCellValue: row => row[6] },
+        { name: 'Contract Expiration Date', title: 'Expiration Date', getCellValue: row => row[7] },
     ]);
     const [tableColumnExtensions] = useState([
         { columnName: 'Id', width: 80 },
-        { columnName: 'ProductCategoryName', width: 220 },
-        { columnName: 'StoreName', width: 220 },
-        { columnName: 'SalesAmount', width: 120 },
+        { columnName: 'Vendor Name', width: 350 },
+        { columnName: 'Vendor Number', width: 100 },
+        { columnName: 'Agreement Number', width: 150 },
+        { columnName: 'Contract Status', width: 100 },
+        { columnName: 'Contract Category', width: 150 },
+        { columnName: 'Contract Effective Date', width: 150 },
+        { columnName: 'Contract Expiration Date', width: 150 },
     ]);
 
     const getRemoteRows = (requestedSkip, take) => {
