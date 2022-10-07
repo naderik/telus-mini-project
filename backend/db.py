@@ -32,7 +32,7 @@ def connection_uri():
     #     config['history_database']['dbname'],
     #     config['history_database']['host']
     # )
-    URI = "postgresql://postgres:postgres@35.226.141.139:5432/contract-data"
+    URI = "POSTGRES_URI HERE"
 
     return URI
 
